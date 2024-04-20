@@ -81,7 +81,7 @@ func main() {
 	router.Run(":" + os.Getenv("PORT"))
 
 	server := &http.Server{
-		Addr: ":8080",
+		Addr: os.Getenv("PORT"),
 	}
 
 	// SOAL 1
