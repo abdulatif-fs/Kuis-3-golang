@@ -49,11 +49,11 @@ func main() {
 	}
 
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		os.Getenv("host"),
-		os.Getenv("port"),
-		os.Getenv("user"),
-		os.Getenv("password"),
-		os.Getenv("dbname"),
+		os.Getenv("PGHOST"),
+		os.Getenv("PGPORT"),
+		os.Getenv("PGUSER"),
+		os.Getenv("PGPASSWORD"),
+		os.Getenv("PGDATABASE"),
 	)
 
 	DB, err = sql.Open("postgres", psqlInfo)
@@ -78,7 +78,7 @@ func main() {
 	router.PUT("/books/:id", controllers.InsertBook)
 	router.DELETE("/books/:id", controllers.DeletetBook)
 
-	router.Run(":" + os.Getenv("port"))
+	router.Run(":" + os.Getenv("PORT"))
 
 	server := &http.Server{
 		Addr: ":8080",
