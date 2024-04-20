@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"main/Quiz-3/controllers"
 
-	"main/Quiz-3/database"
+	db "main/Quiz-3/database"
 
 	"net/http"
 	"os"
@@ -40,7 +40,7 @@ var (
 
 func main() {
 
-	err = godotenv.Load("config/.env")
+	err = godotenv.Load("Quiz-3/config/.env")
 
 	if err != nil {
 		fmt.Println("failed load file environment")
@@ -64,9 +64,11 @@ func main() {
 		fmt.Println("DB Connection Success")
 	}
 
-	database.DbMigrate(DB)
+	db.DbMigrate(DB)
 
 	defer DB.Close()
+
+	// ROUTER
 	router := gin.Default()
 	router.GET("/categories", controllers.GetCategory)
 	router.POST("/categories", controllers.InsertCategory)
