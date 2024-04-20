@@ -7,7 +7,7 @@ import (
 
 	"main/Quiz-3/database"
 
-	// "net/http"
+	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -80,17 +80,17 @@ func main() {
 
 	router.Run(":" + os.Getenv("PORT"))
 
-	// server := &http.Server{
-	// 	Addr: ":8080",
-	// }
+	server := &http.Server{
+		Addr: ":8080",
+	}
 
-	// // SOAL 1
-	// http.HandleFunc("bangun-datar/segitiga-sama-sisi", http.HandlerFunc(controllers.HitungSegitiga))
-	// http.Handle("bangun-datar/persegi", http.HandlerFunc(controllers.HitungPersegi))
-	// http.Handle("bangun-datar/persegi-panjang", http.HandlerFunc(controllers.HitungPersegiPanjang))
-	// http.Handle("bangun-datar/lingkaran", http.HandlerFunc(controllers.HitungLingkaran))
+	// SOAL 1
+	http.HandleFunc("bangun-datar/segitiga-sama-sisi", http.HandlerFunc(controllers.HitungSegitiga))
+	http.Handle("bangun-datar/persegi", http.HandlerFunc(controllers.HitungPersegi))
+	http.Handle("bangun-datar/persegi-panjang", http.HandlerFunc(controllers.HitungPersegiPanjang))
+	http.Handle("bangun-datar/lingkaran", http.HandlerFunc(controllers.HitungLingkaran))
 
-	// // jalankan server
-	// fmt.Println("server running at http://localhost:8080")
-	// server.ListenAndServe()
+	// jalankan server
+	fmt.Println("server running at http://localhost:8080")
+	server.ListenAndServe()
 }
