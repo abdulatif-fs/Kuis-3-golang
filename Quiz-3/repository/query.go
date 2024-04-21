@@ -30,21 +30,21 @@ func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
 }
 
 func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
-	sql := "INSERT INTO category (id_category, nama, created_at, updated_at) VALUES ($1, $2, $3, $4)"
+	sql := "INSERT INTO category (id_category, nama) VALUES ($1, $2)"
 
 	// category.Updated_at = time.Now().Format(time.RFC1123Z)
 	// category.Updated_at = time.Now().Format(time.RFC1123Z)
-	errs := db.QueryRow(sql, &category.ID, &category.Nama, &category.Created_at, &category.Updated_at)
+	errs := db.QueryRow(sql, &category.ID, &category.Nama)
 
 	return errs.Err()
 }
 
 func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
-	sql := "UPDATE person SET id_category=$1, nama=$2, updated_at=$3"
+	sql := "UPDATE person SET id_category=$1, nama=$2"
 
 	// category.Updated_at = time.Now().Format(time.RFC1123Z)
 
-	errs := db.QueryRow(sql, category.ID, category.Nama, category.Updated_at)
+	errs := db.QueryRow(sql, category.ID, category.Nama)
 
 	return errs.Err()
 }
@@ -82,7 +82,7 @@ func GetAllBook(db *sql.DB) (results []structs.Book, err error) {
 }
 
 func InsertBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "INSERT INTO book (id_book, id_categori, title, description, image_url, release_year, price, total_page, thickness, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)"
+	sql := "INSERT INTO book (id_book, id_categori, title, description, image_url, release_year, price, total_page, thickness) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
 
 	// book.Created_at = time.Now().Format(time.RFC1123Z)
 	// book.Updated_at = time.Now().Format(time.RFC1123Z)
@@ -95,13 +95,13 @@ func InsertBook(db *sql.DB, book structs.Book) (err error) {
 		tebaltipis = "tebal"
 	}
 	book.Thickness = tebaltipis
-	errs := db.QueryRow(sql, &book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &book.Created_at, &book.Updated_at)
+	errs := db.QueryRow(sql, &book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness)
 
 	return errs.Err()
 }
 
 func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "UPDATE person SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7, updated_at=$8"
+	sql := "UPDATE person SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7"
 
 	// book.Updated_at = time.Now().Format(time.RFC1123Z)
 	var tebaltipis = ""
