@@ -71,6 +71,9 @@ func main() {
 	// ROUTER
 	router := gin.Default()
 	router.GET("bangun-datar/segitiga-sama-sisi", controllers.HitungSegitiga)
+	router.GET("bangun-datar/persegi", controllers.HitungPersegi)
+	router.GET("bangun-datar/persegi-panjang", controllers.HitungPersegiPanjang)
+	router.GET("bangun-datar/lingkaran", controllers.HitungLingkaran)
 	router.GET("/categories", controllers.GetCategory)
 	router.POST("/categories", controllers.InsertCategory)
 	router.PUT("/categories/:id", controllers.UpdatetCategory)
@@ -89,9 +92,9 @@ func main() {
 
 	// SOAL 1
 	// http.HandleFunc("bangun-datar/segitiga-sama-sisi", http.HandlerFunc(controllers.HitungSegitiga))
-	http.Handle("bangun-datar/persegi", http.HandlerFunc(controllers.HitungPersegi))
-	http.Handle("bangun-datar/persegi-panjang", http.HandlerFunc(controllers.HitungPersegiPanjang))
-	http.Handle("bangun-datar/lingkaran", http.HandlerFunc(controllers.HitungLingkaran))
+	// http.Handle("bangun-datar/persegi", http.HandlerFunc(controllers.HitungPersegi))
+	// http.Handle("bangun-datar/persegi-panjang", http.HandlerFunc(controllers.HitungPersegiPanjang))
+	// http.Handle("bangun-datar/lingkaran", http.HandlerFunc(controllers.HitungLingkaran))
 
 	// jalankan server
 	fmt.Println("server running at http://localhost:8080")

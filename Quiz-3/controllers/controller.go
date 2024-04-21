@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"encoding/json"
 	"main/Quiz-3/bangun_datar"
 	"main/Quiz-3/database"
 	"main/Quiz-3/repository"
@@ -16,105 +15,69 @@ func HitungSegitiga(c *gin.Context) {
 	jenisHitung := c.Query("hitung")
 	GetAlas := c.Query("alas")
 	GetTinggi := c.Query("tinggi")
-	// if r.Method == "GET" {
-	// 	jenisHitung := r.URL.Query().Get("hitung")
-	// 	GetAlas := r.URL.Query().Get("alas")
 	alas, _ := strconv.Atoi(GetAlas)
-	// 	GetTinggi := r.URL.Query().Get("tinggi")
 	tinggi, _ := strconv.Atoi(GetTinggi)
 
 	if jenisHitung == "luas" {
 		result := bangun_datar.LuasSegitiga(int64(alas), int64(tinggi))
-		// datakirim, _ := json.Marshal(result)
 		c.JSON(http.StatusOK, result)
-		// 		w.Header().Set("Content-Type", "application/json")
-		// 		w.WriteHeader(http.StatusOK)
-		// 		w.Write(datakirim)
 
 	} else if jenisHitung == "keliling" {
 		result := bangun_datar.KelilingSegitiga(int64(alas), int64(tinggi))
 		c.JSON(http.StatusOK, result)
-		// 		datakirim, _ := json.Marshal(result)
-		// 		w.Header().Set("Content-Type", "application/json")
-		// 		w.WriteHeader(http.StatusOK)
-		// 		w.Write(datakirim)
-	}
-	// }
-
-}
-
-func HitungPersegi(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "GET" {
-		jenisHitung := r.URL.Query().Get("hitung")
-		GetSisi := r.URL.Query().Get("sisi")
-		sisi, _ := strconv.Atoi(GetSisi)
-
-		if jenisHitung == "luas" {
-			result := bangun_datar.LuasPersegi(int64(sisi))
-			datakirim, _ := json.Marshal(result)
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusOK)
-			w.Write(datakirim)
-
-		} else if jenisHitung == "keliling" {
-			result := bangun_datar.KelilingPersegi(int64(sisi))
-			datakirim, _ := json.Marshal(result)
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusOK)
-			w.Write(datakirim)
-		}
 	}
 
 }
 
-func HitungPersegiPanjang(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "GET" {
-		jenisHitung := r.URL.Query().Get("hitung")
-		GetSisi := r.URL.Query().Get("panjang")
-		panjang, _ := strconv.Atoi(GetSisi)
-		GetLebar := r.URL.Query().Get("lebar")
-		lebar, _ := strconv.Atoi(GetLebar)
+func HitungPersegi(c *gin.Context) {
 
-		if jenisHitung == "luas" {
-			result := bangun_datar.LuasPersegiPanjang(int64(panjang), int64(lebar))
-			datakirim, _ := json.Marshal(result)
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusOK)
-			w.Write(datakirim)
+	jenisHitung := c.Query("hitung")
+	GetSisi := c.Query("sisi")
+	sisi, _ := strconv.Atoi(GetSisi)
 
-		} else if jenisHitung == "keliling" {
-			result := bangun_datar.KelilingPersegiPanjang(int64(panjang), int64(lebar))
-			datakirim, _ := json.Marshal(result)
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusOK)
-			w.Write(datakirim)
-		}
+	if jenisHitung == "luas" {
+		result := bangun_datar.LuasPersegi(int64(sisi))
+		c.JSON(http.StatusOK, result)
+
+	} else if jenisHitung == "keliling" {
+		result := bangun_datar.KelilingPersegi(int64(sisi))
+		c.JSON(http.StatusOK, result)
 	}
 
 }
 
-func HitungLingkaran(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "GET" {
-		jenisHitung := r.URL.Query().Get("hitung")
-		GetJariJari := r.URL.Query().Get("jariJari")
-		jariJari, _ := strconv.Atoi(GetJariJari)
+func HitungPersegiPanjang(c *gin.Context) {
 
-		if jenisHitung == "luas" {
-			result := bangun_datar.LuasLingkaran(int64(jariJari))
-			datakirim, _ := json.Marshal(result)
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusOK)
-			w.Write(datakirim)
+	jenisHitung := c.Query("hitung")
+	GetSisi := c.Query("panjang")
+	panjang, _ := strconv.Atoi(GetSisi)
+	GetLebar := c.Query("lebar")
+	lebar, _ := strconv.Atoi(GetLebar)
 
-		} else if jenisHitung == "keliling" {
-			result := bangun_datar.KelilingLingkaran(int64(jariJari))
-			datakirim, _ := json.Marshal(result)
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusOK)
-			w.Write(datakirim)
-		}
+	if jenisHitung == "luas" {
+		result := bangun_datar.LuasPersegiPanjang(int64(panjang), int64(lebar))
+		c.JSON(http.StatusOK, result)
+
+	} else if jenisHitung == "keliling" {
+		result := bangun_datar.KelilingPersegiPanjang(int64(panjang), int64(lebar))
+		c.JSON(http.StatusOK, result)
 	}
+}
 
+func HitungLingkaran(c *gin.Context) {
+
+	jenisHitung := c.Query("hitung")
+	GetJariJari := c.Query("jariJari")
+	jariJari, _ := strconv.Atoi(GetJariJari)
+
+	if jenisHitung == "luas" {
+		result := bangun_datar.LuasLingkaran(int64(jariJari))
+		c.JSON(http.StatusOK, result)
+
+	} else if jenisHitung == "keliling" {
+		result := bangun_datar.KelilingLingkaran(int64(jariJari))
+		c.JSON(http.StatusOK, result)
+	}
 }
 
 func GetCategory(c *gin.Context) {
@@ -163,10 +126,10 @@ func UpdatetCategory(c *gin.Context) {
 		panic(err)
 	}
 
-	// err = repository.InsertPerson(database.DbConnection, person)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	err = repository.UpdatetCategory(database.DbConnection, category)
+	if err != nil {
+		panic(err)
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"result": "Success Updated Person",
@@ -219,10 +182,10 @@ func InsertBook(c *gin.Context) {
 		panic(err)
 	}
 
-	// err = repository.InsertPerson(database.DbConnection, person)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	err = repository.InsertBook(database.DbConnection, book)
+	if err != nil {
+		panic(err)
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"result": "Success Insert Person",
@@ -237,10 +200,10 @@ func UpdatetBook(c *gin.Context) {
 		panic(err)
 	}
 
-	// err = repository.InsertPerson(database.DbConnection, person)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	err = repository.UpdatetBook(database.DbConnection, book)
+	if err != nil {
+		panic(err)
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"result": "Success Updated Person",
