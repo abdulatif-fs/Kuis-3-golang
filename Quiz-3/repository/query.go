@@ -6,7 +6,7 @@ import (
 )
 
 func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
-	sql := "SELECT * from category"
+	sql := "SELECT id_category, nama from category"
 
 	rows, err := db.Query(sql)
 
@@ -58,7 +58,7 @@ func DeletetCategory(db *sql.DB, category structs.Categories) (err error) {
 }
 
 func GetAllBook(db *sql.DB) (results []structs.Book, err error) {
-	sql := "SELECT * from book"
+	sql := "SELECT id_book, id_category, title, description, image_url, release_year, price, total_page, thickness from book"
 
 	rows, err := db.Query(sql)
 
