@@ -239,7 +239,7 @@ func GetBookById(c *gin.Context) {
 	var book structs.Book
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	book.ID = int(id)
+	book.Category_id = int(id)
 
 	persons, err := repository.GetBookById(database.DbConnection, book)
 
