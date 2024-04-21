@@ -120,37 +120,39 @@ func InsertCategory(c *gin.Context) {
 
 func UpdatetCategory(c *gin.Context) {
 	var category structs.Categories
+	id, _ := strconv.Atoi(c.Param("id"))
 
 	err := c.ShouldBindJSON(&category)
 	if err != nil {
 		panic(err)
 	}
 
+	category.ID = int(id)
 	err = repository.UpdatetCategory(database.DbConnection, category)
+
 	if err != nil {
 		panic(err)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Updated Category",
+		"result": "Succes Updates Category",
 	})
 }
 
 func DeletetCategory(c *gin.Context) {
 	var category structs.Categories
+	id, _ := strconv.Atoi(c.Param("id"))
 
-	err := c.ShouldBindJSON(&category)
-	if err != nil {
-		panic(err)
-	}
+	category.ID = int(id)
 
-	err = repository.DeletetCategory(database.DbConnection, category)
+	err := repository.DeletetCategory(database.DbConnection, category)
+
 	if err != nil {
 		panic(err)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Deleted Category",
+		"result": "Deleted Book Success",
 	})
 }
 
@@ -194,36 +196,38 @@ func InsertBook(c *gin.Context) {
 
 func UpdatetBook(c *gin.Context) {
 	var book structs.Book
+	id, _ := strconv.Atoi(c.Param("id"))
 
 	err := c.ShouldBindJSON(&book)
 	if err != nil {
 		panic(err)
 	}
 
+	book.ID = int(id)
 	err = repository.UpdatetBook(database.DbConnection, book)
+
 	if err != nil {
 		panic(err)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Updated Book",
+		"result": "Succes Updates Book",
 	})
 }
 
 func DeletetBook(c *gin.Context) {
 	var book structs.Book
+	id, _ := strconv.Atoi(c.Param("id"))
 
-	err := c.ShouldBindJSON(&book)
-	if err != nil {
-		panic(err)
-	}
+	book.ID = int(id)
 
-	err = repository.DeletetBook(database.DbConnection, book)
+	err := repository.DeletetBook(database.DbConnection, book)
+
 	if err != nil {
 		panic(err)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Deleted Book",
+		"result": "Deleted Book Success",
 	})
 }
