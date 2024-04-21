@@ -130,7 +130,7 @@ func DeletetBook(db *sql.DB, book structs.Book) (err error) {
 func GetBookById(db *sql.DB, book structs.Book) (results []structs.Book, err error) {
 	sql := "SELECT * from book where id_category = $1"
 
-	rows, err := db.Query(sql, book.Category_id)
+	rows, err := db.Query(sql, book.ID)
 
 	if err != nil {
 		panic(err)
