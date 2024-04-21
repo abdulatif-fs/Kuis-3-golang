@@ -34,7 +34,7 @@ func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
 func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 	sql := "INSERT INTO category (id_category, nama, created_at, updated_at) VALUES ($1, $2, $3, $4)"
 
-	category.Updated_at = *timestamp.Now()
+	category.Created_at = *timestamp.Now()
 	category.Updated_at = *timestamp.Now()
 	errs := db.QueryRow(sql, &category.ID, &category.Nama, &category.Created_at, &category.Updated_at)
 
