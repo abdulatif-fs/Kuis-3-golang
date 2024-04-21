@@ -21,7 +21,7 @@ func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
 	for rows.Next() {
 		var categories = structs.Categories{}
 
-		err = rows.Scan(&categories.ID, &categories.Nama)
+		err = rows.Scan(&categories.ID, &categories.Nama, &categories.Created_at, &categories.Updated_at)
 		if err != nil {
 			panic(err)
 		}
@@ -36,7 +36,7 @@ func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 
 	Created_at := time.Now()
 	Updated_at := time.Now()
-	errs := db.QueryRow(sql, &category.ID, &category.Nama, Created_at, Updated_at)
+	errs := db.QueryRow(sql, &category.ID, &category.Nama, &Created_at, &Updated_at)
 
 	return errs.Err()
 }
@@ -84,7 +84,7 @@ func GetAllBook(db *sql.DB) (results []structs.Book, err error) {
 }
 
 func InsertBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "INSERT INTO book (id_book, id_category, title, description, image_url, release_year, price, total_page, thickness, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+	sql := "INSERT INTO book (id_book, id_category, title, description, image_url, release_year, price, total_page, thickness, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)"
 
 	Created_at := time.Now()
 	Updated_at := time.Now()
@@ -97,9 +97,9 @@ func InsertBook(db *sql.DB, book structs.Book) (err error) {
 		tebaltipis = "tebal"
 	}
 	book.Thickness = tebaltipis
-	_, errs := db.Exec(sql, &book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Created_at, &Updated_at)
+	errs := db.QueryRow(sql, &book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Created_at, &Updated_at)
 
-	return errs
+	return errs.Err()
 }
 
 func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
