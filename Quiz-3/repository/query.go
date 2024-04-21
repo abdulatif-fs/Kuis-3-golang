@@ -82,7 +82,7 @@ func GetAllBook(db *sql.DB) (results []structs.Book, err error) {
 }
 
 func InsertBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "INSERT INTO book (id_book, id_categori, title, description, image_url, release_year, price, total_page, thickness) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+	sql := "INSERT INTO book (id_book, id_category, title, description, image_url, release_year, price, total_page, thickness) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
 
 	// book.Created_at = time.Now().Format(time.RFC1123Z)
 	// book.Updated_at = time.Now().Format(time.RFC1123Z)
