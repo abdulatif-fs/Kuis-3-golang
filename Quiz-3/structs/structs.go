@@ -1,7 +1,5 @@
 package structs
 
-// "github.com/augurysys/timestamp"
-
 type Categories struct {
 	ID         int         `json:"id"`
 	Nama       string      `json:"nama"`
