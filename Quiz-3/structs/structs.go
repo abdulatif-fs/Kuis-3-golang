@@ -11,10 +11,10 @@ type datetime struct {
 }
 
 type Categories struct {
-	ID         int    `json:"id"`
-	Nama       string `json:"nama"`
-	Created_at string `json:"created_at"`
-	Updated_at string `json:"updated_at"`
+	ID   int    `json:"id"`
+	Nama string `json:"nama"`
+	// Created_at string `json:"created_at"`
+	// Updated_at string `json:"updated_at"`
 }
 
 type Book struct {
@@ -26,7 +26,7 @@ type Book struct {
 	Price        string `json:"price"`
 	Total_page   int    `json:"total_price"`
 	Thickness    string `json:"thickness"`
-	Created_at   string `json:"created_at"`
-	Updated_at   string `json:"updated_at"`
-	Category_id  int    `json:"category_id"`
+	// Created_at   string `json:"created_at"`
+	// Updated_at   string `json:"updated_at"`
+	Category_id int `json:"category_id"`
 }
