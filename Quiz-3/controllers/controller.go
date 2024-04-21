@@ -231,3 +231,27 @@ func DeletetBook(c *gin.Context) {
 		"result": "Deleted Book Success",
 	})
 }
+
+func GetBookById(c *gin.Context) {
+	var (
+		result gin.H
+	)
+	var book structs.Book
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	book.ID = int(id)
+
+	persons, err := repository.GetBookById(database.DbConnection, book)
+
+	if err != nil {
+		result = gin.H{
+			"result": err,
+		}
+	} else {
+		result = gin.H{
+			"result": persons,
+		}
+	}
+
+	c.JSON(http.StatusOK, result)
+}

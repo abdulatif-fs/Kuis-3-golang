@@ -126,3 +126,27 @@ func DeletetBook(db *sql.DB, book structs.Book) (err error) {
 
 	return errs.Err()
 }
+
+func GetBookById(db *sql.DB, book structs.Book) (results []structs.Book, err error) {
+	sql := "SELECT * from book where id_category = $1"
+
+	rows, err := db.Query(sql, book.Category_id)
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var book = structs.Book{}
+
+		err = rows.Scan(&book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness)
+		if err != nil {
+			panic(err)
+		}
+
+		results = append(results, book)
+	}
+	return
+}

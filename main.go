@@ -78,7 +78,7 @@ func main() {
 	router.POST("/categories", controllers.InsertCategory)
 	router.PUT("/categories/:id", controllers.UpdatetCategory)
 	router.DELETE("/categories/:id", controllers.DeletetCategory)
-	router.GET("/categories/:id/books")
+	router.GET("/categories/:id/books", controllers.GetBookById)
 	router.GET("/books", controllers.GetBook)
 	router.POST("/books", controllers.InsertBook)
 	router.PUT("/books/:id", controllers.InsertBook)
