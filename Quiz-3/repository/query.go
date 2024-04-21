@@ -36,9 +36,9 @@ func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 
 	Created_at := time.Now()
 	Updated_at := time.Now()
-	errs := db.QueryRow(sql, &category.ID, &category.Nama, &Created_at, &Updated_at)
+	_, errs := db.Exec(sql, &category.ID, &category.Nama, &Created_at, &Updated_at)
 
-	return errs.Err()
+	return errs
 }
 
 func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
@@ -54,9 +54,9 @@ func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
 func DeletetCategory(db *sql.DB, category structs.Categories) (err error) {
 	sql := "DELETE FROM category WHERE id_category=$1"
 
-	errs := db.QueryRow(sql, &category.ID)
+	_, errs := db.Exec(sql, &category.ID)
 
-	return errs.Err()
+	return errs
 }
 
 func GetAllBook(db *sql.DB) (results []structs.Book, err error) {
@@ -116,17 +116,17 @@ func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
 	}
 	book.Thickness = tebaltipis
 
-	errs := db.QueryRow(sql, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Updated_at, &book.ID)
+	_, errs := db.Exec(sql, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Updated_at, &book.ID)
 
-	return errs.Err()
+	return errs
 }
 
 func DeletetBook(db *sql.DB, book structs.Book) (err error) {
 	sql := "DELETE FROM book WHERE id_book=$1"
 
-	errs := db.QueryRow(sql, &book.ID)
+	_, errs := db.Exec(sql, &book.ID)
 
-	return errs.Err()
+	return errs
 }
 
 func GetBookById(db *sql.DB, book structs.Book) (results []structs.Book, err error) {
