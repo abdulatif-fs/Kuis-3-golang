@@ -70,6 +70,7 @@ func main() {
 
 	// ROUTER
 	router := gin.Default()
+	router.GET("bangun-datar/segitiga-sama-sisi", controllers.HitungSegitiga)
 	router.GET("/categories", controllers.GetCategory)
 	router.POST("/categories", controllers.InsertCategory)
 	router.PUT("/categories/:id", controllers.UpdatetCategory)
@@ -87,7 +88,7 @@ func main() {
 	}
 
 	// SOAL 1
-	http.HandleFunc("bangun-datar/segitiga-sama-sisi", http.HandlerFunc(controllers.HitungSegitiga))
+	// http.HandleFunc("bangun-datar/segitiga-sama-sisi", http.HandlerFunc(controllers.HitungSegitiga))
 	http.Handle("bangun-datar/persegi", http.HandlerFunc(controllers.HitungPersegi))
 	http.Handle("bangun-datar/persegi-panjang", http.HandlerFunc(controllers.HitungPersegiPanjang))
 	http.Handle("bangun-datar/lingkaran", http.HandlerFunc(controllers.HitungLingkaran))
