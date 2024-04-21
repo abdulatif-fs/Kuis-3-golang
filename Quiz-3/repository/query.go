@@ -42,7 +42,7 @@ func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 }
 
 func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
-	sql := "UPDATE category SET nama=$1, updated_at=$2 WHERE id=$3"
+	sql := "UPDATE category SET nama=$1, updated_at=$2 WHERE id_category=$3"
 
 	Updated_at := time.Now()
 
@@ -103,7 +103,7 @@ func InsertBook(db *sql.DB, book structs.Book) (err error) {
 }
 
 func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "UPDATE book SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7, updated_at=$8 WHERE id=$9"
+	sql := "UPDATE book SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7, updated_at=$8 WHERE id_book=$9"
 
 	Updated_at := time.Now()
 	var tebaltipis = ""
