@@ -19,7 +19,7 @@ func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
 	for rows.Next() {
 		var categories = structs.Categories{}
 
-		err = rows.Scan(&categories.ID, &categories.Nama, &categories.Created_at, &categories.Updated_at)
+		err = rows.Scan(&categories.ID, &categories.Nama)
 		if err != nil {
 			panic(err)
 		}
@@ -71,7 +71,7 @@ func GetAllBook(db *sql.DB) (results []structs.Book, err error) {
 	for rows.Next() {
 		var book = structs.Book{}
 
-		err = rows.Scan(&book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &book.Created_at, &book.Updated_at)
+		err = rows.Scan(&book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness)
 		if err != nil {
 			panic(err)
 		}
@@ -114,7 +114,7 @@ func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
 	}
 	book.Thickness = tebaltipis
 
-	errs := db.QueryRow(sql, book.Title, book.Description, book.Image_url, book.Release_year, book.Price, book.Total_page, book.Thickness, book.Updated_at)
+	errs := db.QueryRow(sql, book.Title, book.Description, book.Image_url, book.Release_year, book.Price, book.Total_page, book.Thickness)
 
 	return errs.Err()
 }
