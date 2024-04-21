@@ -4,8 +4,8 @@
 CREATE TABLE category(
     id_category BIGINT NOT NULL,
     nama VARCHAR(256),
-    created_at date,
-    updated_at date,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
     PRIMARY KEY(id_category)
 )
 

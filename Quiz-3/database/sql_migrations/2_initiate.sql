@@ -11,7 +11,8 @@ CREATE TABLE book(
     price VARCHAR(256),
     total_page int,
     thickness VARCHAR(256),
-    created_at date,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
     PRIMARY KEY(id_book),
     CONSTRAINT fk_category
       FOREIGN KEY(id_category) 
