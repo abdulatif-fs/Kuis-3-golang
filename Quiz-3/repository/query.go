@@ -50,7 +50,7 @@ func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
 }
 
 func DeletetCategory(db *sql.DB, category structs.Categories) (err error) {
-	sql := "DELETE FROM category WHERE id=$1"
+	sql := "DELETE FROM category WHERE id_category=$1"
 
 	errs := db.QueryRow(sql, category.ID)
 
@@ -120,7 +120,7 @@ func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
 }
 
 func DeletetBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "DELETE FROM book WHERE id=$1"
+	sql := "DELETE FROM book WHERE id_book=$1"
 
 	errs := db.QueryRow(sql, book.ID)
 
