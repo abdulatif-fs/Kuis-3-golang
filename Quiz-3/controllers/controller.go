@@ -114,7 +114,7 @@ func InsertCategory(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Insert Person",
+		"result": "Success Insert Category",
 	})
 }
 
@@ -132,7 +132,7 @@ func UpdatetCategory(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Updated Person",
+		"result": "Success Updated Category",
 	})
 }
 
@@ -150,7 +150,7 @@ func DeletetCategory(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Deleted Person",
+		"result": "Success Deleted Category",
 	})
 }
 
@@ -188,7 +188,7 @@ func InsertBook(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Insert Person",
+		"result": "Success Insert Book",
 	})
 }
 
@@ -206,7 +206,7 @@ func UpdatetBook(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Updated Person",
+		"result": "Success Updated Book",
 	})
 }
 
@@ -224,6 +224,6 @@ func DeletetBook(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"result": "Success Deleted Person",
+		"result": "Success Deleted Book",
 	})
 }

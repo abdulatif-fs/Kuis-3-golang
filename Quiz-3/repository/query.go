@@ -40,7 +40,7 @@ func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 }
 
 func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
-	sql := "UPDATE person SET id_category=$1, nama=$2"
+	sql := "UPDATE category SET id_category=$1, nama=$2"
 
 	// category.Updated_at = time.Now().Format(time.RFC1123Z)
 
@@ -101,7 +101,7 @@ func InsertBook(db *sql.DB, book structs.Book) (err error) {
 }
 
 func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "UPDATE person SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7"
+	sql := "UPDATE book SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7"
 
 	// book.Updated_at = time.Now().Format(time.RFC1123Z)
 	var tebaltipis = ""
@@ -120,7 +120,7 @@ func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
 }
 
 func DeletetBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "DELETE FROM category WHERE id=$1"
+	sql := "DELETE FROM book WHERE id=$1"
 
 	errs := db.QueryRow(sql, book.ID)
 
