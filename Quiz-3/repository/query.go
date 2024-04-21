@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"main/Quiz-3/structs"
 
-	"github.com/augurysys/timestamp"
+	"time"
 )
 
 func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
@@ -34,9 +34,9 @@ func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
 func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 	sql := "INSERT INTO category (id_category, nama, created_at, updated_at) VALUES ($1, $2, $3, $4)"
 
-	Created_at := *timestamp.Now()
-	Updated_at := *timestamp.Now()
-	errs := db.QueryRow(sql, &category.ID, &category.Nama, &Created_at, &Updated_at)
+	Created_at := time.Now()
+	Updated_at := time.Now()
+	errs := db.QueryRow(sql, &category.ID, &category.Nama, Created_at, Updated_at)
 
 	return errs.Err()
 }
@@ -44,7 +44,7 @@ func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
 	sql := "UPDATE category SET id_category=$1, nama=$2, updated_at=$3"
 
-	Updated_at := *timestamp.Now()
+	Updated_at := time.Now()
 
 	errs := db.QueryRow(sql, &category.ID, &category.Nama, &Updated_at)
 
@@ -86,8 +86,8 @@ func GetAllBook(db *sql.DB) (results []structs.Book, err error) {
 func InsertBook(db *sql.DB, book structs.Book) (err error) {
 	sql := "INSERT INTO book (id_book, id_category, title, description, image_url, release_year, price, total_page, thickness, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
 
-	Created_at := *timestamp.Now()
-	Updated_at := *timestamp.Now()
+	Created_at := time.Now()
+	Updated_at := time.Now()
 	var tebaltipis = ""
 	if book.Total_page <= 100 {
 		tebaltipis = "tipis"
@@ -97,15 +97,15 @@ func InsertBook(db *sql.DB, book structs.Book) (err error) {
 		tebaltipis = "tebal"
 	}
 	book.Thickness = tebaltipis
-	errs := db.QueryRow(sql, &book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Created_at, &Updated_at)
+	_, errs := db.Exec(sql, &book.ID, &book.Category_id, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Created_at, &Updated_at)
 
-	return errs.Err()
+	return errs
 }
 
 func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
 	sql := "UPDATE book SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7, updated_at=$7"
 
-	Updated_at := *timestamp.Now()
+	Updated_at := time.Now()
 	var tebaltipis = ""
 	if book.Total_page <= 100 {
 		tebaltipis = "tipis"
