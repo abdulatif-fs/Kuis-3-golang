@@ -14,7 +14,7 @@ type Book struct {
 	Image_url    string      `json:"image_url"`
 	Release_year int         `json:"release_year"`
 	Price        string      `json:"price"`
-	Total_page   int         `json:"total_price"`
+	Total_page   int         `json:"total_page"`
 	Thickness    string      `json:"thickness"`
 	Created_at   interface{} `json:"created_at"`
 	Updated_at   interface{} `json:"updated_at"`

@@ -8,7 +8,7 @@ import (
 )
 
 func GetAllCategory(db *sql.DB) (results []structs.Categories, err error) {
-	sql := "SELECT id_category, nama from category"
+	sql := "SELECT * from category"
 
 	rows, err := db.Query(sql)
 
@@ -42,11 +42,11 @@ func InsertCategory(db *sql.DB, category structs.Categories) (err error) {
 }
 
 func UpdatetCategory(db *sql.DB, category structs.Categories) (err error) {
-	sql := "UPDATE category SET id_category=$1, nama=$2, updated_at=$3"
+	sql := "UPDATE category SET nama=$1, updated_at=$2 WHERE id=$3"
 
 	Updated_at := time.Now()
 
-	errs := db.QueryRow(sql, &category.ID, &category.Nama, &Updated_at)
+	errs := db.QueryRow(sql, &category.Nama, &Updated_at, &category.ID)
 
 	return errs.Err()
 }
@@ -103,7 +103,7 @@ func InsertBook(db *sql.DB, book structs.Book) (err error) {
 }
 
 func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
-	sql := "UPDATE book SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7, updated_at=$7"
+	sql := "UPDATE book SET title=$1, description=$2, image_url=$3, release_year=$4, price=$5, total_page=$6, thickness=$7, updated_at=$8 WHERE id=$9"
 
 	Updated_at := time.Now()
 	var tebaltipis = ""
@@ -116,7 +116,7 @@ func UpdatetBook(db *sql.DB, book structs.Book) (err error) {
 	}
 	book.Thickness = tebaltipis
 
-	errs := db.QueryRow(sql, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Updated_at)
+	errs := db.QueryRow(sql, &book.Title, &book.Description, &book.Image_url, &book.Release_year, &book.Price, &book.Total_page, &book.Thickness, &Updated_at, &book.ID)
 
 	return errs.Err()
 }
@@ -130,7 +130,7 @@ func DeletetBook(db *sql.DB, book structs.Book) (err error) {
 }
 
 func GetBookById(db *sql.DB, book structs.Book) (results []structs.Book, err error) {
-	sql := "SELECT * from book where id_category = $1"
+	sql := "SELECT * from book WHERE id_category = $1"
 
 	rows, err := db.Query(sql, &book.Category_id)
 
